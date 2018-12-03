@@ -23,7 +23,7 @@ public class BarraDeVidaPlayer : MonoBehaviour {
     {
         if (other.CompareTag("Bala"))
         {
-           // DanoVida -= other.GetComponent<bala>();
+            //DañoVida -= other.GetComponent<bala>().;
             vidaImage.fillAmount = Vida / DanoVida;
             if (DanoVida <= 0)
             {

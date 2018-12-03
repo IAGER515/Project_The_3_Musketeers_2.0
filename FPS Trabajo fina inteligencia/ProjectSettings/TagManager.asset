@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Piso
   - Enemy
-  - Bullet
-  - BulletEscopeta
-  - EnemyCuerpo
   layers:
   - Default
   - TransparentFX

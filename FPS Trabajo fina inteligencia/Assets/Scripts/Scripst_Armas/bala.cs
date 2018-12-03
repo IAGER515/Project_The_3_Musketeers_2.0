@@ -13,11 +13,4 @@ public class bala : MonoBehaviour {
         transform.Translate(Vector3.forward * VelBala *Time.deltaTime);
         //disparar en la posicion de la mira 
     }
-     void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "EnemyCuerpo")
-        {
-            Destroy(gameObject);
-        }
-    }
 }

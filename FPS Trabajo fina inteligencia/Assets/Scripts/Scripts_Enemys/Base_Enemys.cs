@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Base_Enemys : MonoBehaviour {
+
+    public float VidaEnemys = 100f;
     public GameObject Bala;
     public GameObject Player;
     public Transform[] waypoints;
@@ -10,7 +12,7 @@ public abstract class Base_Enemys : MonoBehaviour {
     public UnityEngine.AI.NavMeshAgent Agente;
 
     // Use this for initialization
-    protected virtual void Start() {
+    void Start() {
         Agente = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
@@ -20,6 +22,5 @@ public abstract class Base_Enemys : MonoBehaviour {
     }
     protected abstract void Estadoestatico();
     protected abstract void Estadopatrullaje();
-   protected abstract void Estadopersecucion();
-
+    protected abstract void Estadopersecucion();
 }

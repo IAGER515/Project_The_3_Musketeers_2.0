@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FPS_jugador : FPS_BasJugador
 {
@@ -16,13 +15,6 @@ public class FPS_jugador : FPS_BasJugador
             transform.Rotate(0, movimientoHorizaontal, 0);//rotacion de personaje en horizontal
             transform.Rotate(-movimientoVertical, 0, 0);//rotacion del personaje en vertical
             //movimiento de jugador
-            Mira.transform.position = Input.mousePosition;
-            //le damos la posicion del maouse para ver 
-            FolloWeapont.transform.position = CamaraJugador.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 7.6f));
-            //donde tiene que ver el arma
-            currentWeapomt[0].transform.LookAt(FolloWeapont.transform.position);
-            // currentWeapomt[1].transform.LookAt(FolloWeapont.transform.position);
-            //cuando se presiona el boton se mouse se crea e raycast para detectat que el obj ha colisionado
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(0f, 0f, 0.1f);
@@ -53,44 +45,33 @@ public class FPS_jugador : FPS_BasJugador
         if (Input.GetKeyDown("e"))
         {
             PistolaNormal.SetActive(true);
-            Escopeta2.SetActive(false);
+            Escopeta.SetActive(false);
         }
         if (Input.GetKeyDown("q"))
         {
             PistolaNormal.SetActive(false);
-            Escopeta2.SetActive(true);
+            Escopeta.SetActive(true);
         }
     }
-
+   
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Piso")
+        if (other.tag=="Piso")
         {
             saltar = true;
         }
-        if (other.tag == "Bullet" )
+        if (other.tag == "Bullet")
         {
-            vidaImage.fillAmount = Vida / 10;
-            vidaPlayer = vidaPlayer-10;
+            vidaPlayer = -10;
         }
-        if (other.tag == "EnemyCuerpo")
-        {
-            vidaPlayer = vidaPlayer-5;
-        }
-        if (vidaPlayer == 0)
-        {
-            muerte.SetActive(true);
-            ButtonIniciar.SetActive(true);
-        }
-        
     }
     // Use this for initialization
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
         mecanicas();
-    }
+	}
 }

@@ -19,9 +19,8 @@ public class Enemt_Distancia : Base_Enemys
     public Transform balaposicion;
 
     // Use this for initialization
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         agente = GetComponent<NavMeshAgent>();
         auxVelocidad = agente.speed;
         InvokeRepeating("EstadoDetectar", iniciobala, esperabala);

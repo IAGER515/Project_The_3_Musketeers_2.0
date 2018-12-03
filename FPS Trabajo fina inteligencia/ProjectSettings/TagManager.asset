@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Piso
   - Enemy
+  - EnemyDistancia
+  - EnemyCuerpo
+  - Boss
+  - Bullet
+  - BulletEscopeta
   layers:
   - Default
   - TransparentFX

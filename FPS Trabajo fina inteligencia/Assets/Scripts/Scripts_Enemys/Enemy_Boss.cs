@@ -1,36 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Enemy_Boss : Base_Enemys {
 
-    NavMeshAgent agente;
-    float auxVelocidad;
-    public float BossLife = 1000;
-    public GameObject escudo;
+    public float VidaBoss = 1000;
+    public GameObject Escudo;
+    NavMeshAgent Agent;
+
+
 
 
 
     protected override void Estadoestatico()
     {
-        if(BossLife >= 500)
+        if (VidaBoss >= 500)
         {
-            escudo.SetActive(false);
+            Escudo.SetActive(false);
         }
-       
     }
     public void Rage()
     {
-        if (BossLife <500)
+        if (VidaBoss < 500)
         {
-           
-            escudo.SetActive(true);
+            Escudo.SetActive(true);
         }
-
     }
-
     protected override void Estadopatrullaje()
     {
         throw new System.NotImplementedException();
@@ -41,17 +37,38 @@ public class Enemy_Boss : Base_Enemys {
         throw new System.NotImplementedException();
     }
 
-
-
     // Use this for initialization
-    void Start () {
-        agente = GetComponent<NavMeshAgent>();
-        auxVelocidad = agente.speed;
-    }
+    private void Start () {
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
-        Estadoestatico();
-        Rage();
+		
 	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("colision");
+            Player = other.gameObject;
+            
+       
+          
+        }
+        if (other.tag == "Bullet")
+        {
+            Debug.Log("pego");
+            VidaBoss -=  10;
+        }
+        if (other.tag == "BulletEscopeta")
+        {
+            Debug.Log("pegoEscopeta");
+            VidaBoss -= 10;
+        }
+        if (VidaBoss == 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

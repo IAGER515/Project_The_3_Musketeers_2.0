@@ -68,9 +68,8 @@ public class FPS_jugador : FPS_BasJugador
         {
             saltar = true;
         }
-        if (other.tag == "Bullet" )
+        if (other.tag == "BulletEnemy" )
         {
-            vidaImage.fillAmount = Vida / 10;
             vidaPlayer = vidaPlayer-10;
         }
         if (other.tag == "EnemyCuerpo")

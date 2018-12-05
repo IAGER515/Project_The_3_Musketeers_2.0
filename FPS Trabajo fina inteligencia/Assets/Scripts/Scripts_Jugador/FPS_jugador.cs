@@ -21,7 +21,6 @@ public class FPS_jugador : FPS_BasJugador
             FolloWeapont.transform.position = CamaraJugador.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 7.6f));
             //donde tiene que ver el arma
             currentWeapomt[0].transform.LookAt(FolloWeapont.transform.position);
-            // currentWeapomt[1].transform.LookAt(FolloWeapont.transform.position);
             //cuando se presiona el boton se mouse se crea e raycast para detectat que el obj ha colisionado
             if (Input.GetKey(KeyCode.W))
             {
@@ -71,15 +70,24 @@ public class FPS_jugador : FPS_BasJugador
         if (other.tag == "BulletEnemy" )
         {
             vidaPlayer = vidaPlayer-10;
+            GameObject hpObj = GameObject.Find("Vida");
+            Vector3 scale = hpObj.transform.localScale;
+            scale.x = (float)vidaPlayer / 100f;
+            hpObj.transform.localScale = scale;
         }
         if (other.tag == "EnemyCuerpo")
         {
             vidaPlayer = vidaPlayer-5;
+            GameObject hpObj = GameObject.Find("Vida");
+            Vector3 scale = hpObj.transform.localScale;
+            scale.x = (float)vidaPlayer / 100f;
+            hpObj.transform.localScale = scale;
         }
         if (vidaPlayer == 0)
         {
             muerte.SetActive(true);
             ButtonIniciar.SetActive(true);
+            Time.fixedDeltaTime = 0.0f;
         }
         
     }

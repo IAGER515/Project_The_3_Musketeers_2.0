@@ -20,6 +20,7 @@ public abstract class FPS_BasJugador : MonoBehaviour {
     public float vidaPlayer = 100f; // vida del Player 
     public GameObject PistolaNormal;//gameobject De pistola Normal
     public GameObject Escopeta2;//gameobject De Escopeta 
+    public bool activacion;
 
     public float Vida = 100f;
     float DanoVida;

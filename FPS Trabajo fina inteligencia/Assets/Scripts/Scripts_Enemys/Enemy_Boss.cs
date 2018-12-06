@@ -8,10 +8,7 @@ public class Enemy_Boss : Base_Enemys {
     public float VidaBoss = 1000;
     public GameObject Escudo;
     NavMeshAgent Agent;
-
-
-
-
+    public GameObject muertoBoss;
 
     protected override void Estadoestatico()
     {
@@ -38,36 +35,44 @@ public class Enemy_Boss : Base_Enemys {
     }
 
     // Use this for initialization
-    private void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    protected override void Start() {
+        Agente = GetComponent<NavMeshAgent>();
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Debug.Log("colision");
             Player = other.gameObject;
-            
-       
-          
+
         }
         if (other.tag == "Bullet")
         {
             Debug.Log("pego");
-            VidaBoss -=  10;
+            VidaBoss -= 10;
+            GameObject hpObj = GameObject.Find("VidaBoss");
+            Vector3 scale = hpObj.transform.localScale;
+            scale.x = (float)VidaBoss / 100f;
+            hpObj.transform.localScale = scale;
         }
         if (other.tag == "BulletEscopeta")
         {
             Debug.Log("pegoEscopeta");
-            VidaBoss -= 10;
+            VidaBoss -= 15;
+            GameObject hpObj = GameObject.Find("VidaBoss");
+            Vector3 scale = hpObj.transform.localScale;
+            scale.x = (float)VidaBoss / 100f;
+            hpObj.transform.localScale = scale;
         }
         if (VidaBoss == 0)
         {
+            muertoBoss.SetActive(true);
+            Destroy(gameObject, 5f);
             Destroy(this.gameObject);
         }
     }

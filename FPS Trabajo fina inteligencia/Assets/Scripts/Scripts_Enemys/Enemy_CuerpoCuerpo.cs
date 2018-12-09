@@ -17,9 +17,8 @@ public class Enemy_CuerpoCuerpo : Base_Enemys
     public float tiempoEspera;
 
     // Use this for initialization
-   protected override void Start()
+    void Start()
     {
-        base.Start();
         agente = GetComponent<NavMeshAgent>();
         auxVelocidad = agente.speed;
     }
@@ -88,5 +87,10 @@ void OnTriggerEnter(Collider other)
         {
             Destroy(this.gameObject);
         }
+    }
+
+    protected override void EstadoDisparar()
+    {
+        throw new System.NotImplementedException();
     }
 }

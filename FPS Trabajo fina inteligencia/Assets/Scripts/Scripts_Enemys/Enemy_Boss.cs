@@ -35,7 +35,7 @@ public class Enemy_Boss : Base_Enemys {
     }
 
     // Use this for initialization
-    protected override void Start() {
+     void Start() {
         Agente = GetComponent<NavMeshAgent>();
     }
 
@@ -75,5 +75,10 @@ public class Enemy_Boss : Base_Enemys {
             Destroy(gameObject, 5f);
             Destroy(this.gameObject);
         }
+    }
+
+    protected override void EstadoDisparar()
+    {
+        throw new System.NotImplementedException();
     }
 }

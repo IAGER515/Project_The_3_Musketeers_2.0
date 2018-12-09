@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public abstract class FPS_BasJugador : MonoBehaviour {
     public enum EstadoJugador { Mecanicas, Regeneracion };
     public EstadoJugador EstadoActual;
-    public GameObject Mira;//Mira Del Jugador
-    public GameObject[] currentWeapomt;//lugar donde estara el arma
-    public GameObject FolloWeapont;//lugar hacia donde tiene que mirar 
     public Camera CamaraJugador; // para guardar la camara del jugador 
     public float velocidadHorizontal;//para la velocidad al voltear horizontal movimiento del raton
     public float velocidadVertical;//para la velocidad al voltear vertical movimiento del raton

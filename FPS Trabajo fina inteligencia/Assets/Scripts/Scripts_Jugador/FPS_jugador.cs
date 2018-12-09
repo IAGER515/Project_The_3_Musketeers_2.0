@@ -16,12 +16,6 @@ public class FPS_jugador : FPS_BasJugador
             transform.Rotate(0, movimientoHorizaontal, 0);//rotacion de personaje en horizontal
             transform.Rotate(-movimientoVertical, 0, 0);//rotacion del personaje en vertical
             //movimiento de jugador
-            Mira.transform.position = Input.mousePosition;
-            //le damos la posicion del maouse para ver 
-            FolloWeapont.transform.position = CamaraJugador.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 7.6f));
-            //donde tiene que ver el arma
-            currentWeapomt[0].transform.LookAt(FolloWeapont.transform.position);
-            //cuando se presiona el boton se mouse se crea e raycast para detectat que el obj ha colisionado
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(0f, 0f, 0.1f);
@@ -85,9 +79,9 @@ public class FPS_jugador : FPS_BasJugador
         }
         if (vidaPlayer == 0)
         {
+            Destroy(GameObject.Find("Vida"));
             muerte.SetActive(true);
             ButtonIniciar.SetActive(true);
-            Time.fixedDeltaTime = 0.0f;
         }
         
     }

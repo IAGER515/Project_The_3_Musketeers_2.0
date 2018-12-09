@@ -19,12 +19,11 @@ public class Enemt_Distancia : Base_Enemys
     public Transform balaposicion;
 
     // Use this for initialization
-    protected override void Start()
+      void Start()
     {
-        base.Start();
         agente = GetComponent<NavMeshAgent>();
         auxVelocidad = agente.speed;
-        InvokeRepeating("EstadoDetectar", iniciobala, esperabala);
+        InvokeRepeating("EstadoDisparar", iniciobala, esperabala);
 
     }
 
@@ -41,7 +40,7 @@ public class Enemt_Distancia : Base_Enemys
         if (estadoActual == EstadoMaquina.estatico)
         {
             tiempoEspera++;
-            if (tiempoEspera == 120)
+            if (tiempoEspera == 100)
             {
                 estadoActual = EstadoMaquina.patrullaje;
                 return;
@@ -71,18 +70,29 @@ public class Enemt_Distancia : Base_Enemys
             {
                 agente.stoppingDistance = 3f;
                 transform.LookAt(Player.transform.position);
-                Instantiate(Bala, balaposicion.position, balaposicion.rotation);
+                EstadoDisparar();
+                estadoActual = EstadoMaquina.ataque;
+                
             }
         }
     }
-
+    protected override void EstadoDisparar()
+    {
+        if (estadoActual == EstadoMaquina.ataque)
+        {
+            Debug.Log("disparo");
+            transform.LookAt(Player.transform.position);
+            Instantiate(Bala, balaposicion.position, balaposicion.rotation);
+        }
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Debug.Log("colision");
-            Player = other.gameObject;
             estadoActual = EstadoMaquina.detectar;
+            EstadoDisparar();
             agente.isStopped = true;
         }
         if (other.tag == "Bullet")
@@ -105,4 +115,6 @@ public class Enemt_Distancia : Base_Enemys
     {
         throw new System.NotImplementedException();
     }
+
+  
 }

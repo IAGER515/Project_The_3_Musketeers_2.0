@@ -17,15 +17,15 @@ public class Enemy_Boss : Base_Enemys
     {
         if (VidaBoss >= 500)
         {
-            Escudo.SetActive(false);
+            //Escudo.SetActive(false);
         }
     }
     public void Rage()
     {
         if (VidaBoss < 500)
         {
-            Escudo.SetActive(true);
-            VidaBoss += 0.01f;
+           // Escudo.SetActive(true);
+            VidaBoss += 0.21f;
         }
     }
     protected override void Estadopatrullaje()

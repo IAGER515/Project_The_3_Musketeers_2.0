@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy_Boss : Base_Enemys {
+public class Enemy_Boss : Base_Enemys
+{
 
     public float VidaBoss = 1000;
     public GameObject Escudo;
     NavMeshAgent Agent;
     public GameObject muertoBoss;
+    public Transform balaposicion;
+    public GameObject Descarga;
 
     protected override void Estadoestatico()
     {
@@ -22,6 +25,7 @@ public class Enemy_Boss : Base_Enemys {
         if (VidaBoss < 500)
         {
             Escudo.SetActive(true);
+            VidaBoss += 0.01f;
         }
     }
     protected override void Estadopatrullaje()
@@ -35,12 +39,17 @@ public class Enemy_Boss : Base_Enemys {
     }
 
     // Use this for initialization
-     void Start() {
+    void Start()
+    {
         Agente = GetComponent<NavMeshAgent>();
+        InvokeRepeating("EstadoDisparar", 0.2f, 0.8f);
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
+        Estadoestatico();
+        Rage();
 
     }
     private void OnTriggerEnter(Collider other)
@@ -49,6 +58,8 @@ public class Enemy_Boss : Base_Enemys {
         {
             Debug.Log("colision");
             Player = other.gameObject;
+            Instantiate(Descarga, other.transform.position, other.transform.rotation);
+            FPS_jugador.instance.vidaPlayer -= 20;
 
         }
         if (other.tag == "Bullet")
@@ -69,7 +80,7 @@ public class Enemy_Boss : Base_Enemys {
             scale.x = (float)VidaBoss / 100f;
             hpObj.transform.localScale = scale;
         }
-        if (VidaBoss == 0)
+        if (VidaBoss <= 0)
         {
             muertoBoss.SetActive(true);
             Destroy(gameObject, 5f);
@@ -79,6 +90,9 @@ public class Enemy_Boss : Base_Enemys {
 
     protected override void EstadoDisparar()
     {
-        throw new System.NotImplementedException();
+        transform.LookAt(Player.transform.position);
+        Instantiate(Bala, balaposicion.position, balaposicion.rotation);
+
+
     }
 }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Enemys.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MiniBoss.unity
+    guid: e061c79b3e4053842b13998b64cd8dd8
+  - enabled: 1
+    path: Assets/Scenes/Boss.unity
+    guid: 69943bc37a8504e4ea67293aa5c1dd68
   m_configObjects: {}

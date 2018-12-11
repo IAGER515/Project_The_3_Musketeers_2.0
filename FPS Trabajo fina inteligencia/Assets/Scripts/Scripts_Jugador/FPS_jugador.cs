@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FPS_jugador : FPS_BasJugador
 {
+
+    public static FPS_jugador instance;
     public override void mecanicas()
     {
         if (EstadoActual == EstadoJugador.Mecanicas)
@@ -77,7 +79,7 @@ public class FPS_jugador : FPS_BasJugador
             scale.x = (float)vidaPlayer / 100f;
             hpObj.transform.localScale = scale;
         }
-        if (vidaPlayer == 0)
+        if (vidaPlayer <= 0)
         {
             Destroy(GameObject.Find("Vida"));
             muerte.SetActive(true);
@@ -87,7 +89,7 @@ public class FPS_jugador : FPS_BasJugador
     }
     // Use this for initialization
     void Start() {
-
+        instance = this;
     }
 
     // Update is called once per frame

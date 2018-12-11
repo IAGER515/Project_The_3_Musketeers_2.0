@@ -16,4 +16,5 @@ public class Bala_Enemys : MonoBehaviour {
         Player = player.transform.position;
         transform.Translate(Vector3.forward * VelBala * Time.deltaTime);
     }
+    
 }

@@ -19,4 +19,12 @@ public class Button : MonoBehaviour {
     {
         SceneManager.LoadScene("Enemys");
     }
+    public void OnclickBoss()
+    {
+        SceneManager.LoadScene("Boss");
+    }
+    public void OnclickMiniBoss()
+    {
+        SceneManager.LoadScene("MiniBoss");
+    }
 }

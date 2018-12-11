@@ -16,6 +16,9 @@ public class Enemy_CuerpoCuerpo : Base_Enemys
     public float distancia;
     public float tiempoEspera;
 
+
+    public static Enemy_CuerpoCuerpo instance;
+
     // Use this for initialization
     void Start()
     {
@@ -83,7 +86,7 @@ void OnTriggerEnter(Collider other)
             Debug.Log("pegoEscopeta");
             VidaEnemyCuerpo = VidaEnemyCuerpo - 15;
         }
-        if (VidaEnemyCuerpo == 0)
+        if (VidaEnemyCuerpo <= 0)
         {
             Destroy(this.gameObject);
         }

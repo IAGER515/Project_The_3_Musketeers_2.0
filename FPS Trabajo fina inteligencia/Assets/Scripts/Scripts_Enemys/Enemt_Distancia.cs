@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemt_Distancia : Base_Enemys
 {
@@ -18,6 +19,8 @@ public class Enemt_Distancia : Base_Enemys
     public float VidaEnemyDistancia = 100f;
     public Transform balaposicion;
 
+    public static Enemt_Distancia instance;
+
     // Use this for initialization
       void Start()
     {
@@ -33,6 +36,8 @@ public class Enemt_Distancia : Base_Enemys
         Estadoestatico();
         Estadopatrullaje();
         EstadoDetectar();
+
+       
     }
 
     protected override void Estadoestatico()
@@ -105,7 +110,7 @@ public class Enemt_Distancia : Base_Enemys
             Debug.Log("pegoEscopeta");
             VidaEnemyDistancia = VidaEnemyDistancia - 10;
         }
-        if (VidaEnemyDistancia == 0)
+        if (VidaEnemyDistancia <= 0)
         {
             Destroy(this.gameObject);
         }

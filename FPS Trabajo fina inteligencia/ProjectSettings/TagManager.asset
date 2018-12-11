@@ -10,6 +10,7 @@ TagManager:
   - BulletEscopeta
   - EnemyCuerpo
   - BulletEnemy
+  - Escudo
   layers:
   - Default
   - TransparentFX
